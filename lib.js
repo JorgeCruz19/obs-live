@@ -4326,7 +4326,7 @@ function updateMixerRun(e = false, programa) {
 			playarea.innerHTML = "";
 		} else {
 			var childNodes = playarea.childNodes;
-
+			console.log(childNodes);
 			for (var n = 0; n < childNodes.length; n++) {
 				if (childNodes[n].querySelector("video")) {
 					var vidtemp = childNodes[n].querySelector("video");
@@ -5346,13 +5346,13 @@ function updateMixerRun(e = false, programa) {
 				fontsize = fontsize / voar;
 				// creates a video label holder inside the recently created label holder
 				var label = document.createElement("span");
-				/* let watermark = document.createElement("img"); */ /* Jorge */
+				let watermark = document.createElement("img"); /* Jorge */
 				if (session.labelstyle) {
 					label.className = "video-label " + session.labelstyle;
-					/* watermark.className = "watermark"; */
+					watermark.className = "watermark";
 				} else {
 					label.className = "video-label";
-					/* 	watermark.className = "watermark"; */
+					watermark.className = "watermark";
 				}
 				if (fontsize) {
 					if (session.labelsize) {
@@ -5362,20 +5362,22 @@ function updateMixerRun(e = false, programa) {
 				}
 
 				/* watermark.src = "./media/DP.png"; */
+				let selectedProgram = session.rpcs[vid.dataset.UUID].label;
 
-				/* if (programa == "hoymismo") {
+				if (selectedProgram == "hoymismo") {
+					watermark.src = "./media/WATERMARKS-HM.png";
+				} else if (selectedProgram == "diapolitico") {
 					watermark.src = "./media/DP.png";
-				} else if (programa == "diapolitico") {
-					watermark.src = "./media/DP.png";
-				} else if (programa == "tn5estelar") {
-					watermark.src = "./media/DP.png";
+				} else if (selectedProgram == "tn5estelar") {
+					watermark.src = "./media/WATERMARKS-TN5.png";
 				} else {
 					watermark.src = null;
-				} */
+				}
 
-				label.innerText = session.rpcs[vid.dataset.UUID].label + "Hola";
-				holder.appendChild(label);
-				/* holder.appendChild(watermark); */
+				label.innerText = session.rpcs[vid.dataset.UUID].label;
+				console.log(session);
+				/* holder.appendChild(label); */
+				holder.appendChild(watermark);
 			} else if (
 				session.showlabels === true &&
 				vid.id === "videosource" &&
@@ -5424,19 +5426,23 @@ function updateMixerRun(e = false, programa) {
 					}
 					label.style.fontSize = parseInt(fontsize) + "px";
 				}
-				watermark.src = "./media/DP.png";
-				if (programa == "hoymismo") {
+				let selectedProgram = session.label;
+				/* 	let selectedProgram = window.location.search
+					.split("&l=")[1]
+					.split("&", 1);
+				let [program] = selectedProgram; */
+
+				if (selectedProgram == "hoymismo") {
+					watermark.src = "./media/WATERMARKS-HM.png";
+				} else if (selectedProgram == "diapolitico") {
 					watermark.src = "./media/DP.png";
-				} else if (programa == "diapolitico") {
-					watermark.src = "./media/DP.png";
-				} else if (programa == "tn5estelar") {
-					watermark.src = "./media/DP.png";
+				} else if (selectedProgram == "tn5estelar") {
+					watermark.src = "./media/WATERMARKS-TN5.png";
 				} else {
 					watermark.src = null;
 				}
-				console.log(programa);
-				label.innerText = sanitizeLabel(session.label) + "cel"; //.replace(/[\W]+/g,"_").replace(/_+/g, ' ');
-				holder.appendChild(label);
+				label.innerText = sanitizeLabel(session.label); //.replace(/[\W]+/g,"_").replace(/_+/g, ' ');
+				/* holder.appendChild(label); */
 				holder.appendChild(watermark);
 			}
 

@@ -1,0 +1,148 @@
+<html>
+	<head>
+		<title>Admin Tvc Live</title>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="../media/televicentro-favicon.png"
+		/>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+				background-color: rgb(17, 24, 39);
+				width: 100%;
+				height: 100%;
+			}
+
+			iframe {
+				width: 100%;
+				min-height: 650px;
+				border: 0;
+				margin: 0;
+				padding: 0;
+				display: block;
+			}
+			.container {
+				display: flex;
+				min-height: 100vh;
+			}
+			.video-container {
+				width: 100%;
+				height: 100%;
+			}
+			.video-container h2 {
+				font-size: 1.5em;
+				color: #fff;
+				padding-left: 1rem;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+		<main class="container">
+			<div class="video-container channel1">
+				<h2>Canal 1</h2>
+			</div>
+			<div class="video-container channel2">
+				<h2>Canal 2</h2>
+			</div>
+			<div class="video-container channel3">
+				<h2>Canal 3</h2>
+			</div>
+			<div class="video-container channel4">
+				<h2>Canal 4</h2>
+			</div>
+		</main>
+
+		<script>
+			(function (w) {
+				w.URLSearchParams =
+					w.URLSearchParams ||
+					function (searchString) {
+						var self = this;
+						searchString = searchString.replace("??", "?");
+						self.searchString = searchString;
+						self.get = function (name) {
+							var results = new RegExp("[\?&]" + name + "=([^&#]*)").exec(
+								self.searchString
+							);
+							if (results == null) {
+								return null;
+							} else {
+								return decodeURI(results[1]) || 0;
+							}
+						};
+					};
+			})(window);
+			const container = document.querySelector(".container");
+			const channel1 = document.querySelector(".channel1");
+			const channel2 = document.querySelector(".channel2");
+			const channel3 = document.querySelector(".channel3");
+			const channel4 = document.querySelector(".channel4");
+			var urlEdited = window.location.search.replace(/\?\?/g, "?");
+			urlEdited = urlEdited.replace(/\?/g, "&");
+			urlEdited = urlEdited.replace(/\&/, "?");
+
+			if (urlEdited !== window.location.search) {
+				warnlog(window.location.search + " changed to " + urlEdited);
+				window.history.pushState(
+					{ path: urlEdited.toString() },
+					"",
+					urlEdited.toString()
+				);
+			}
+			var urlParams = new URLSearchParams(urlEdited);
+			var path =
+				window.location.host +
+				window.location.pathname.split("/").slice(0, -1).join("/");
+			var rooms = "";
+			if (urlParams.has("rooms")) {
+				rooms = urlParams.get("rooms");
+				rooms = rooms.split(",");
+
+				/* var password = prompt(
+					"Enter the password for the rooms; leave blank for none"
+				);
+				if (password) {
+					password = "&password=" + password;
+				} else {
+					password = "";
+				} */
+				rooms.forEach((room) => {
+					console.log(room);
+					loadIframes(
+						"https://" + path + "/../?clean&director=" + room /*  + password */,
+						room
+					);
+				});
+			} else {
+				document.write(
+					"To use, comma separate the room names. ie: https://vdo.ninja/examples/multi?rooms=xxxx,yyy,ccc"
+				);
+			}
+
+			function loadIframes(url, room) {
+				var iframe = document.createElement("iframe");
+				iframe.allow =
+					"autoplay;camera;microphone;fullscreen;picture-in-picture;";
+				iframe.src = url;
+				if (room == "canal1") {
+					channel1.appendChild(iframe);
+				} else if (room == "canal2") {
+					channel2.appendChild(iframe);
+				} else if (room == "canal3") {
+					channel3.appendChild(iframe);
+				} else {
+					channel4.appendChild(iframe);
+				}
+			}
+		</script>
+	</body>
+</html>

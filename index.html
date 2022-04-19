@@ -467,7 +467,7 @@
 						</span>
 						
 						<div id="selectImageTFLITE" style="display:none;margin-top:10px;">
-							<img src="./media/bg_sample.webp" loading="lazy" style="max-width:130px;max-height:73.5px;display:inline-block:margin:10px;cursor:pointer;" onclick="changeTFLiteImage(event, this);"/>
+							<img src="./media/TELEVICENTRO.gif" loading="lazy" style="max-width:130px;max-height:73.5px;display:inline-block:margin:10px;cursor:pointer;" onclick="changeTFLiteImage(event, this);"/>
 							<img src="./media/bg_sample2.webp" loading="lazy" style="max-width:130px;max-height:73.5px;display:inline-block:margin:10px;cursor:pointer;"  onclick="changeTFLiteImage(event, this);"/>
 							<label style="width:130px;display:inline-block;margin:0 10px; text-align: center; cursor:pointer;">
 							  <i class="las la-hdd" style="font-size: 3em;"></i><br />Select Local Image
@@ -1610,7 +1610,7 @@
 						<i class="las la-info-circle"></i>
 					</span>
 					<div id="selectImageTFLITE3" style="display:none;margin-top:10px;">
-						<img src="./media/bg_sample.webp" loading="lazy" style="max-width:130px;max-height:73.5px;display:inline-block:margin:10px;cursor:pointer;" onclick="changeTFLiteImage(event, this);"/>
+						<img src="./media/TELEVICENTRO.gif" loading="lazy" style="max-width:130px;max-height:73.5px;display:inline-block:margin:10px;cursor:pointer;" onclick="changeTFLiteImage(event, this);"/>
 						<img src="./media/bg_sample2.webp" loading="lazy" style="max-width:130px;max-height:73.5px;display:inline-block:margin:10px;cursor:pointer;"  onclick="changeTFLiteImage(event, this);"/>
 						<label style="width:130px;display:inline-block;margin:0 10px; text-align: center; cursor:pointer;">
 						  <i class="las la-hdd" style="font-size: 3em;"></i><br /><span data-translate="select-local-image">Select Local Image</span>
@@ -1757,7 +1757,7 @@
 		</div>
 		
 		
-	<--	<div id="roomSettings" style="display:none; user-select: none;">
+		<div id="roomSettings" style="display:none; user-select: none;">
 			<div class="promptModalInner">
 				<span class='modalClose' onclick="toggleRoomSettings();">×</span>
 				<span></span>
@@ -1790,7 +1790,7 @@
 					</span>
 				</span>
 			</div>
-		</div> --> 
+		</div>
 		
 		<div id="transferSettingsTemplate" style="display:none">
 			<h3>Change guest settings</h3><br />
@@ -2010,6 +2010,7 @@
 			// session.introOnClean = true; // this will load the page with the webcam selection screen if &push or &room is in the URL; no need to use &webcam.
 			// session.lowBitrateCutoff = 300; // Set a minimum bitrate (in kbps) before the stream is hidden. Useful for IRL streams maybe
 		</script>
+		<script type="text/javascript" crossorigin="anonymous" src="./index.js"></script>
 		<script type="text/javascript" crossorigin="anonymous" src="./thirdparty/aes.js"></script>
 		<script type="text/javascript" crossorigin="anonymous" id="lib-js" src="./lib.js"></script>
 		<!-- 
@@ -2023,7 +2024,6 @@
 		<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 		<script defer src="./init-firebase.js"></script> -->
 
-// ...
 
 		<script type="module" >
 			import { getApp, initializeApp  } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js"
@@ -2042,36 +2042,31 @@
 					storageBucket: "tvclive-fa3ba.appspot.com",
 					messagingSenderId: "372405973436",
 					appId: "1:372405973436:web:2423ff3dc3cda81c0a3bb9"
-					/* apiKey: 'AIzaSyCzlxd0_GzS-dYlm9W-i7MfCbmVLSZX05s',
-					authDomain: 'obs-live-eaee6.firebaseapp.com',
-					databaseURL: 'https://obs-live-eaee6-default-rtdb.firebaseio.com',
-					projectId: 'obs-live-eaee6',
-					storageBucket: 'obs-live-eaee6.appspot.com',
-					messagingSenderId: '1020138178663',
-					appId: '1:1020138178663:web:f798d5fa6007d371ad2cc2', */
 				});
 			}
 			const db = getDatabase(app);
-
-			joinRoom.addEventListener("click", function(){
-				let selectedChannel = window.location.search.split('?room=',2)[1].split("&",1)
-				let [channel] = selectedChannel
-				
-				set(ref(db, 'channels/' + channel), {
-					canal: channel,
-					estatus: "Activo",
-				});			
-			})
-
-			leaveRoom.addEventListener("click", function(){
-				let selectedChannel = window.location.search.split('?room=',2)[1].split("&",1)
-				let [channel] = selectedChannel
-
-				set(ref(db, 'channels/' + channel), {
-					canal: channel,
-					estatus: "Inactivo",
-				});
-			})
+			if (joinRoom) {
+				joinRoom.addEventListener("click", function(){
+					let selectedChannel = window.location.search.split('?room=',2)[1].split("&",1)
+					let [channel] = selectedChannel
+					
+					set(ref(db, 'channels/' + channel), {
+						canal: channel,
+						estatus: "Activo",
+					});			
+				})
+			}
+			if (leaveRoom) {
+				leaveRoom.addEventListener("click", function(){
+					let selectedChannel = window.location.search.split('?room=',2)[1].split("&",1)
+					let [channel] = selectedChannel
+	
+					set(ref(db, 'channels/' + channel), {
+						canal: channel,
+						estatus: "Inactivo",
+					});
+				})
+			}
 
 		</script>
 	</body>
