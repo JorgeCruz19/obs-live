@@ -10032,7 +10032,7 @@ function directHangup(ele, event) {
 		ele.innerHTML =
 			'<i class="las la-skull-crossbones"></i> <span data-translate="disconnect-guest" >ARMED</span>';
 		miniTranslate(ele);
-		ele.style.backgroundColor = "#BF3F3F";
+		ele.style.backgroundColor = "#fff";
 		stillNeedHangupTarget = 1;
 		Callbacks.push([directHangup, ele, false]);
 		log("Hangup queued");
@@ -10564,12 +10564,12 @@ function remoteMute(ele, event = false) {
 			ele.dataset.value = 0;
 			ele.classList.remove("pressed");
 			ele.innerHTML =
-				'<i class="las la-microphone-slash" style="color:#900"></i>	<span data-translate="mute-guest" >mute guest</span>';
+				'<i class="las la-microphone-slash" style="color:#fff"></i>	<span data-translate="mute-guest" >mute guest</span>';
 		} else {
 			ele.dataset.value = 1;
 			ele.classList.add("pressed");
 			ele.innerHTML =
-				'<i class="las la-microphone-slash" style="color:#900"></i>	<span data-translate="unmute-guest" >un-mute guest</span>';
+				'<i class="las la-microphone-slash" style="color:#fff"></i>	<span data-translate="unmute-guest" >un-mute guest</span>';
 		}
 		miniTranslate(ele);
 	}
@@ -13993,7 +13993,7 @@ function createControlBox(UUID, soloLink, streamID) {
 
 	var handsID = "hands_" + UUID;
 
-	if (session.hidesololinks == false) {
+	/* if (session.hidesololinks == false) {
 		controls.innerHTML +=
 			"<div>\
 			<div style='padding:5px;word-wrap: break-word; overflow:hidden; white-space: nowrap; overflow: hidden; font-size:0.7em; text-overflow: ellipsis;' title='A direct solo view of the video/audio stream with nothing else. Its audio can be remotely controlled from here'> \
@@ -14007,7 +14007,7 @@ function createControlBox(UUID, soloLink, streamID) {
 			"</a>\
 			<button class='pull-right' style='width:100%;background-color:#ecfaff;' onclick='copyFunction(this.previousElementSibling,event)'><i class='las la-user'></i> copy Solo link</button>\
 			</div>";
-	}
+	} */
 
 	controls.innerHTML +=
 		'<button data-action-type="hand-raised" id=\'' +

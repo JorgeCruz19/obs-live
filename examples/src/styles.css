@@ -1,0 +1,306 @@
+@use postcss-preset-env {
+	stage: 0;
+}
+
+/* config.css */
+
+:root {
+	--baseColor: #606468;
+}
+
+:root {
+	--iconFill: var(--baseColor);
+}
+/* layout/base.css */
+:root {
+	--htmlFontSize: 100%;
+
+	--bodyBackgroundColor: rgb(17, 24, 39);
+	--bodyColor: var(--baseColor);
+	--bodyFontFamily: "Arial";
+	--bodyFontFamilyFallback: sans-serif;
+	--bodyFontSize: 0.875rem;
+	--bodyFontWeight: 400;
+	--bodyLineHeight: 1.5;
+}
+
+:root {
+	--loginBorderRadus: 0.25rem;
+	--loginColor: #eee;
+
+	--loginInputBackgroundColor: #3b4148;
+	--loginInputHoverBackgroundColor: #434a52;
+
+	--loginLabelBackgroundColor: #363b41;
+
+	--loginSubmitBackgroundColor: #212a35;
+	--loginSubmitColor: #eee;
+	--loginSubmitHoverBackgroundColor: #293442;
+}
+
+/* modules/anchor.css */
+
+:root {
+	--anchorColor: #eee;
+}
+
+a {
+	color: var(--anchorColor);
+	outline: 0;
+	text-decoration: none;
+}
+
+a:focus,
+a:hover {
+	text-decoration: underline;
+}
+
+/* modules/form.css */
+
+:root {
+	--formGap: 0.875rem;
+}
+p {
+	margin-block: 1.5rem;
+}
+h1 {
+	position: relative;
+}
+.text--center {
+	text-align: center;
+}
+
+input,
+button {
+	background-image: none;
+	border: 0;
+	color: inherit;
+	font: inherit;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	transition: background-color 0.3s;
+}
+
+input[type="submit"] {
+	cursor: pointer;
+}
+
+* {
+	box-sizing: border-box;
+}
+html {
+	box-sizing: border-box;
+	font-size: var(--htmlFontSize);
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	background-color: var(--bodyBackgroundColor);
+	line-height: var(--bodyLineHeight);
+	color: var(--bodyColor);
+	width: 100%;
+	height: 100%;
+	font-size: var(--bodyFontSize);
+	font-weight: var(--bodyFontWeight);
+	font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
+}
+
+iframe {
+	width: 100%;
+	min-height: 650px;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+footer {
+	width: 100%;
+	height: 68px;
+	background-color: #212a35;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2rem;
+	color: #fff;
+}
+
+.align {
+	display: grid;
+	place-items: center;
+}
+
+.grid {
+	/* inline-size: 90%; */
+	margin-inline: auto;
+	max-inline-size: 20rem;
+}
+
+.hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+.icons {
+	display: none;
+}
+
+.icon {
+	block-size: 1em;
+	display: inline-block;
+	fill: var(--iconFill);
+	inline-size: 1em;
+	vertical-align: middle;
+}
+
+.navbar {
+	width: 100%;
+	height: 68px;
+	background-color: #212a35;
+	margin-bottom: 2rem;
+	padding: 0 2rem;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.container {
+	display: flex;
+	min-height: 100vh;
+	flex-wrap: wrap;
+}
+
+.video-container {
+	flex: 1;
+	height: 100%;
+}
+
+.video-container h2 {
+	font-size: 1.5em;
+	color: #fff;
+	text-align: center;
+	padding-left: 1rem;
+}
+
+.form {
+	display: grid;
+	gap: var(--formGap);
+}
+
+.form input[type="password"],
+.form input[type="text"],
+.form input[type="submit"] {
+	inline-size: 100%;
+}
+
+.form__field {
+	display: flex;
+	width: 100%;
+}
+
+.form__input {
+	flex: 1;
+}
+
+.login {
+	color: var(--loginColor);
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.login label,
+.login input[type="text"],
+.login input[type="password"],
+.login input[type="submit"] {
+	border-radius: var(--loginBorderRadus);
+	padding: 1rem;
+}
+
+.login label {
+	background-color: var(--loginLabelBackgroundColor);
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	padding-inline: 1.25rem;
+}
+
+.login input[type="password"],
+.login input[type="text"] {
+	background-color: var(--loginInputBackgroundColor);
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+}
+
+.login input[type="password"]:focus,
+.login input[type="password"]:hover,
+.login input[type="text"]:focus,
+.login input[type="text"]:hover {
+	background-color: var(--loginInputHoverBackgroundColor);
+}
+
+.login input[type="submit"] {
+	background-color: var(--loginSubmitBackgroundColor);
+	color: var(--loginSubmitColor);
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.login input[type="submit"]:focus,
+.login input[type="submit"]:hover {
+	background-color: var(--loginSubmitHoverBackgroundColor);
+}
+
+#logout {
+	padding: 0.5rem 0.8rem;
+	background-color: rgb(17, 24, 39);
+	color: var(--loginSubmitColor);
+	font-weight: 700;
+	text-transform: uppercase;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.badge {
+	position: absolute;
+	right: -15px;
+	top: -5px;
+	border-radius: 50%;
+	box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+	height: 15px;
+	width: 15px;
+	transform: scale(1);
+	animation: pulse-black 2s infinite;
+}
+
+.badge.red {
+	background: rgba(255, 82, 82, 1);
+	box-shadow: 0 0 0 0 rgba(255, 82, 82, 1);
+	animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+	}
+}

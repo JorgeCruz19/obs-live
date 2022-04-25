@@ -413,7 +413,7 @@ body.darktheme .credits > a:visited {
 }
 
 .pressed {
-	background: #1e0000;
+	background-color: #900 !important;
 	-webkit-box-shadow: inset 0px 0px 1px #b90000;
 	-moz-box-shadow: inset 0px 0px 1px #b90000;
 	box-shadow: inset 0px 0px 1px #b90000;
@@ -485,15 +485,18 @@ hr {
 }
 
 #gridlayout {
+	display: grid !important;
 	padding: 0;
 	width: 100%;
-	height: 100%;
+	/* height: 100%; */
 	grid-gap: 0;
 	overflow: hidden;
 	justify-items: stretch;
+	justify-content: center;
 	grid-auto-flow: dense;
 	grid-auto-columns: minmax(50%, auto);
-	grid-auto-rows: minmax(50%, auto);
+	/* grid-auto-rows: minmax(50%, auto); */
+	grid-auto-rows:auto;
 	border: 0;
 	margin: 0;
 }
@@ -534,7 +537,7 @@ hr {
 .directorsgrid .vidcon {
 	display: inline-block !important;
 	width: 269.7px !important;
-	background: #7e7e7e;
+	background: #212a35;
 	color: #fcfcfc;
 	vertical-align: top;
 }
@@ -2846,7 +2849,7 @@ input[type="checkbox"] {
 	}
 }
 .directorMargins {
-	margin: var(--director-margin);
+	/* margin: var(--director-margin); */
 }
 .hideLinksClass {
 	background-color: var(--container-color);
@@ -2955,13 +2958,24 @@ div#roomnotes2 {
 .directorsgrid button {
 	text-transform: lowercase;
 }
-.controlsGrid {
-	grid-template-columns: 1fr 1fr;
+.inner-controlsGrid {
+	margin-bottom: 10px;
+	text-align: center;
+}
+.controlsGrid-adicionales{
 	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 .controlsGrid button {
+	background-color:rgb(17, 24, 39);
+	color: #fff;
 	margin: 5px;
-	text-align: right;
+	text-align: center;
+}
+.inner-controlsGridButton{
+	width: 48%;
+	display: inline-block;
+	margin: 1rem 0 !important;
 }
 .controlsGrid span button {
 	margin-right: 0;
@@ -3014,10 +3028,11 @@ i.las.la-circle {
 	margin-top: 20px;
 }
 div#guestFeeds {
-	background: var(--container-color);
-	padding: 5px 0 15px 20px;
+	/* background: #343a41;
+	padding: 5px 0 15px 20px; */
 	display: inline-block;
-	margin: 0px var(--regular-margin) 80px var(--regular-margin);
+	margin: 0 auto;
+	/* margin: 0px var(--regular-margin) 80px var(--regular-margin); */
 }
 
 div#guestFeeds:empty {
