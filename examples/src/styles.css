@@ -52,7 +52,7 @@ a {
 
 a:focus,
 a:hover {
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 /* modules/form.css */
@@ -259,8 +259,11 @@ footer {
 .login input[type="submit"]:hover {
 	background-color: var(--loginSubmitHoverBackgroundColor);
 }
-
-#logout {
+#channelsActive {
+	display: inline-block;
+}
+#logout,
+#channelsActive {
 	padding: 0.5rem 0.8rem;
 	background-color: rgb(17, 24, 39);
 	color: var(--loginSubmitColor);

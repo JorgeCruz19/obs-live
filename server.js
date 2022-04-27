@@ -16,5 +16,8 @@ app.get("/iframe", (req, res) => {
 app.get("/examples/multi", (req, res) => {
 	res.sendFile(__dirname + "/examples/rooms.html");
 });
+app.get("/examples/channels", (req, res) => {
+	res.sendFile(__dirname + "/examples/channels.html");
+});
 
 app.listen(port, () => console.log("server on port", port));
